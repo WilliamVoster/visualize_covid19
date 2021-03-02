@@ -1,5 +1,11 @@
 import useLocalStorage from "../hooks/useLocalStorage"
 
+/*
+How to fetch from API:
+https://api.covid19api.com/country/south-africa/status/confirmed?from=2020-03-01T00:00:00Z&to=2020-04-01T00:00:00Z
+
+*/
+
 function compareStrings(a, b){
     for (let i = 0; i < Math.max(a.length, b.length); i++) {
         
@@ -18,13 +24,19 @@ function compareStrings(a, b){
     return 0
 }
 
+function is_server(){
+    return typeof window == "undefined"
+}
 
 export default function QueryDataForm(){
     
     const [countries, setCountries] = useLocalStorage("countries", [])
 
-    let queryCountries = async () => {
-        const res = await fetch("https://api.covid19api.com/countries", {mode: "no-cors"})
+    const queryCountries = async () => {
+
+        // cors needed for ports, e.g. localhost:3000 ?
+        const res = await fetch("https://api.covid19api.com/countries", {mode: "cors"})
+
         if(!res.ok){
             console.log("Could not retrieve data from API")
             return
@@ -36,7 +48,26 @@ export default function QueryDataForm(){
         setCountries(sortedCountries)
     }
 
-    if(countries.length == 0){
+    const getTimestamp = (month, year) => {
+
+    }
+
+    const queryData = async (slug, status, month, year) => {
+
+        // temp call to API
+        const res = await fetch(
+            "https://api.covid19api.com/country/south-africa/status/confirmed?from=2020-03-01T00:00:00Z&to=2020-04-01T00:00:00Z")
+        const json = await res.json()
+
+        for (let i = 0; i < json.length; i++) {
+            console.log(json[i].Cases)
+            
+        }
+
+        console.log(json)
+    }
+
+    if(countries.length == 0 && !is_server()){
         console.log("Retrieving countries")
         queryCountries()
     }
@@ -45,6 +76,10 @@ export default function QueryDataForm(){
         e.preventDefault()
 
         let selectedCountry = e.target.selectCountry.value
+
+        console.log(selectedCountry)
+
+        queryData(1, 2, 3, 4)
     }
 
     const clearStorage = () => {
@@ -67,8 +102,8 @@ export default function QueryDataForm(){
                 <select name="selectCountry">
                     <option value="">Select a country</option>
                     {
-                        countries.map((c) => {
-                            return <option value={c.Slug}>{c.Country}</option>
+                        countries.map((c, index) => {
+                            return <option key={index} value={c.Slug}>{c.Country}</option>
                         // console.log(c.Country)
                         })
                     }
