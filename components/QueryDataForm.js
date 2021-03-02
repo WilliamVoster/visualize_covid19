@@ -37,8 +37,7 @@ export default function QueryDataForm(){
     const action = e => {
         e.preventDefault()
 
-        console.log("submitted")
-
+        let selectedCountry = e.target.selectCountry.value
     }
 
     const clearStorage = () => {
@@ -57,13 +56,9 @@ export default function QueryDataForm(){
 
             <button type="button" onClick={displayStorage}>display local storage</button>
 
-            
-
             <form onSubmit={action}>
-                <input type="text" placeholder="should be dropdown of e.g. countries" />
                 <select name="selectCountry">
-                    <option value="test">test</option>
-                    <option value="test2">test2</option>
+                    <option value="">Select a country</option>
                     { 
                          countries.map((c) => {
                              return <option value={c.Slug}>{c.Country}</option>
@@ -71,7 +66,8 @@ export default function QueryDataForm(){
                          })
                     }
                 </select>
-                <input type="submit" value="Generate" />
+
+                <input type="submit" value="Query data" />
             </form>
         </>
     )
