@@ -24,15 +24,17 @@ export default function QueryDataForm(){
     const [countries, setCountries] = useLocalStorage("countries", [])
 
     let queryCountries = async () => {
-        const res = await fetch("https://api.covid19api.com/countries")
+        const res = await fetch("https://api.covid19api.com/countries", {mode: "no-cors"})
         const json = await res.json()
 
         const sortedCountries = json.sort((a, b) => compareStrings(a.Slug, b.Slug))
         setCountries(sortedCountries)
     }
 
-    if(countries.length == 0)
+    if(countries.length == 0){
+        console.log("Retrieving countries")
         queryCountries()
+    }
     
     const action = e => {
         e.preventDefault()
