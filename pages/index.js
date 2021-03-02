@@ -9,12 +9,10 @@ export default function Home(){
     return (
         <div className={styles.containter}>
             <Head>
-                <title>Test</title>
+                <title>Covid 19 data visualization</title>
             </Head>
 
-            <h1>test</h1>
-
-            <p>session data</p>
+            <h1>Program</h1>
 
             <QueryDataForm />
 
