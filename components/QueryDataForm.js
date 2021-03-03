@@ -58,8 +58,8 @@ export default function QueryDataForm({setData}){
 
         // e.g. "https://api.covid19api.com/country/south-africa/status/confirmed?from=2020-03-01T00:00:00Z&to=2020-04-01T00:00:00Z"
         let url = 
-            `https://api.covid19api.com/country/${slug}/status/${status}?from=${year}-${month}-01T00:00:00Z&to=${endYear}-${endMonth}-01T00:00:00Z`
-
+            // `https://api.covid19api.com/country/${slug}/status/${status}?from=${year}-${month}-01T00:00:00Z&to=${endYear}-${endMonth}-01T00:00:00Z`
+            `https://api.covid19api.com/country/${slug}?from=${year}-${month}-01T00:00:00Z&to=${endYear}-${endMonth}-01T00:00:00Z`
         console.log(url)
 
         const res = await fetch(url)
@@ -84,11 +84,11 @@ export default function QueryDataForm({setData}){
         e.preventDefault()
 
         let selectedCountry = e.target.selectCountry.value
+        let selectedMonth = parseInt(e.target.selectMonth.value)
+        let selectedYear = parseInt(e.target.selectYear.value)
 
-        console.log(selectedCountry)
-
-        let data = queryData(selectedCountry, "confirmed", 1, 2021)
-        data.then(val => console.log(data, val))
+        let data = queryData(selectedCountry, "confirmed", selectedMonth, selectedYear)
+        data.then(val => {console.log(data, val); setData([...val])})
 
         console.log(data)
 
@@ -125,6 +125,29 @@ export default function QueryDataForm({setData}){
                         countries.length == 0 &&
                             <option value="">Could not retrieve countries from API</option>
                     }
+                </select>
+
+                <select name="selectMonth">
+                    <option value="">Please select a month</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+
+                <select name="selectYear">
+                    <option value="">Plese select a year</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022 (hopefully not)</option>
                 </select>
 
                 <input type="submit" value="Query data" />
