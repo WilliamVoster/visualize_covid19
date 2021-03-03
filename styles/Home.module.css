@@ -3,6 +3,18 @@
     background: #ff04;
 }
 
+.canvasContainer{
+
+}
+.canvasContainer canvas{
+    border: 2px solid grey;
+
+    width: 200px;
+    height: 100px;
+
+    /* transform: scaleX(2, 1) */
+}
+
 /* display page on computer screen (larger screens) */
 @media (min-width: 600px) {
     .containter {
@@ -10,5 +22,10 @@
         flex-direction: column;
 
         background: #00f4;
+    }
+
+    .canvasContainer canvas{
+        width: 300px;
+        height: 150px;
     }
 }
