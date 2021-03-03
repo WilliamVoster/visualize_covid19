@@ -1,9 +1,12 @@
+import {useState} from "react"
 import styles from "../styles/Home.module.css"
 import Head from "next/head"
 import QueryDataForm from "../components/QueryDataForm"
 
 
 export default function Home(){
+
+    const [data, setData] = useState([])
 
 
     return (
@@ -14,7 +17,13 @@ export default function Home(){
 
             <h1>Program</h1>
 
-            <QueryDataForm />
+            <QueryDataForm data={data} setData={setData} />
+
+            <div>
+
+                {data}
+
+            </div>
 
         </div>
     )
