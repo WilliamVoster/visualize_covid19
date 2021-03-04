@@ -1,10 +1,11 @@
-import {useEffect, useRef} from "react"
+import {useState, useEffect, useRef} from "react"
 import styles from "../styles/GraphCanvas.module.css"
 
 
 export default function GraphCanvas({data}) {
 
     const canvasRef = useRef(null)
+    const [timeSpan, setTimeSpan] = useState({"start": "", "end":""})
 
     useEffect(() => {
         
@@ -24,6 +25,11 @@ export default function GraphCanvas({data}) {
             const startDate = new Date(data[0].Date)
             const endDate = new Date(data[data.length - 1].Date)
             const totalTime = endDate.getTime() - startDate.getTime()
+            console.log(startDate, endDate)
+            setTimeSpan({
+                "start": "" + startDate.getDate() + "/" + (startDate.getMonth()+1) + "/" + startDate.getFullYear(),
+                "end": "" + endDate.getDate() + "/" + (endDate.getMonth()+1) + "/" + endDate.getFullYear()
+            })
 
             let confirmedHighest = 1
             let confirmedLowest = Infinity
@@ -142,7 +148,7 @@ export default function GraphCanvas({data}) {
 
     return (
         <div className={styles.canvasContainer}>
-            <h3><span>▉</span> Graph of active cases over one month </h3>
+            <h3><span>▉</span> Graph of active cases from {timeSpan.start} to {timeSpan.end}</h3>
             <canvas id="graphCanvas" ref={canvasRef}></canvas>
             <ul>
                 <li>The shape and trend of</li>
