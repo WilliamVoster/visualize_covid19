@@ -1,5 +1,5 @@
 import {useEffect, useRef} from "react"
-import styles from "../styles/Home.module.css"
+import styles from "../styles/GraphCanvas.module.css"
 
 
 export default function GraphCanvas({data}) {
@@ -129,8 +129,8 @@ export default function GraphCanvas({data}) {
                 g.lineTo(x, y)})
             g.stroke()
 
-            // g.fillText(`${highestNumber}`, 2, 12)
-            // g.fillText(`${lowestNumber}`, 2, h -2)
+            g.fillText(`${activeHighest}`, 2, 12)
+            g.fillText(`${activeLowest}`, 2, h -2)
 
 
         }catch(error){
@@ -142,7 +142,14 @@ export default function GraphCanvas({data}) {
 
     return (
         <div className={styles.canvasContainer}>
+            <h3><span>▉</span> Graph of active cases over one month </h3>
             <canvas id="graphCanvas" ref={canvasRef}></canvas>
+            <ul>
+                <li>The shape and trend of</li>
+                <li><span className={styles.canvasConfirmedLabel}>▉</span> Confirmed</li>
+                <li><span className={styles.canvasDeathsLabel}>▉</span> Deaths</li>
+                <li><span className={styles.canvasRecoveredLabel}>▉</span> Recovered</li>
+            </ul>
         </div>
     )
 

@@ -1,4 +1,5 @@
 import useLocalStorage from "../hooks/useLocalStorage"
+import styles from "../styles/QueryForm.module.css"
 
 /*
 How to fetch from API:
@@ -107,10 +108,13 @@ export default function QueryDataForm({setData}){
 
 
     return (
-        <div>
+        <div className={styles.queryFormContainer}>
+            
+            {/*
             <button type="button" onClick={clearStorage}>clear local storage</button>
 
-            <button type="button" onClick={displayStorage}>display local storage</button>
+            <button type="button" onClick={displayStorage}>display local storage</button> 
+            */}
 
             <form onSubmit={action}>
                 <select name="selectCountry">

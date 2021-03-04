@@ -1,18 +1,14 @@
 /* display page on phone screen (smaller screens) */
 .containter{
-    background: #ff04;
+    /* background: #ff04; */
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(1fr, 4);
 }
 
-.canvasContainer{
-
-}
-.canvasContainer canvas{
-    border: 2px solid grey;
-
-    width: 200px;
-    height: 100px;
-
-    /* transform: scaleX(2, 1) */
+.containter h1{
+    margin: 20px auto;
 }
 
 /* display page on computer screen (larger screens) */
@@ -21,11 +17,7 @@
         width: 100%;
         flex-direction: column;
 
-        background: #00f4;
+        /* background: #00f4; */
     }
 
-    .canvasContainer canvas{
-        width: 300px;
-        height: 150px;
-    }
 }
