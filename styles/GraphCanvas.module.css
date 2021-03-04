@@ -16,6 +16,7 @@
 }
 .canvasContainer h3 span{
     color: #333;
+    margin-left: -22px;
 }
 .canvasConfirmedLabel{
     color: #3cc;

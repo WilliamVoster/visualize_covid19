@@ -148,7 +148,7 @@ export default function GraphCanvas({data}) {
 
     return (
         <div className={styles.canvasContainer}>
-            <h3><span>▉</span> Graph of active cases from {timeSpan.start} to {timeSpan.end}</h3>
+            <h3><span>▉</span> Graph of active cases<br/>from {timeSpan.start} to {timeSpan.end}</h3>
             <canvas id="graphCanvas" ref={canvasRef}></canvas>
             <ul>
                 <li>The shape and trend of</li>
