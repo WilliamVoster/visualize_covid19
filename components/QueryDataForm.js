@@ -90,6 +90,7 @@ export default function QueryDataForm({setData}){
 
         let data = queryData(selectedCountry, "confirmed", selectedMonth, selectedYear)
         data.then(val => {console.log(data, val); setData([...val])})
+            .catch(e=>console.log(e))
 
         console.log(data)
 
@@ -109,7 +110,7 @@ export default function QueryDataForm({setData}){
 
     return (
         <div className={styles.queryFormContainer}>
-            
+
             {/*
             <button type="button" onClick={clearStorage}>clear local storage</button>
 
